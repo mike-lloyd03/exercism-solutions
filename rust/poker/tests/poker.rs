@@ -24,14 +24,14 @@ fn test_single_hand_always_wins() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_duplicate_hands_always_tie() {
     let input = &["3S 4S 5D 6H JH", "3S 4S 5D 6H JH", "3S 4S 5D 6H JH"];
     assert_eq!(&winning_hands(input), input)
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_highest_card_of_all_hands_wins() {
     test(
         &["4D 5S 6S 8D 3C", "2S 4C 7S 9H 10H", "3S 4S 5D 6H JH"],
@@ -40,7 +40,7 @@ fn test_highest_card_of_all_hands_wins() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_a_tie_has_multiple_winners() {
     test(
         &[
@@ -62,19 +62,19 @@ fn test_high_card_can_be_low_card_in_an_otherwise_tie() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_one_pair_beats_high_card() {
     test(&["4S 5H 6C 8D KH", "2S 4H 6S 4D JH"], &["2S 4H 6S 4D JH"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_highest_pair_wins() {
     test(&["4S 2H 6S 2D JH", "2S 4H 6C 4D JD"], &["2S 4H 6C 4D JD"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_two_pairs_beats_one_pair() {
     test(&["2S 8H 6S 8D JH", "4S 5H 4C 8C 5C"], &["4S 5H 4C 8C 5C"])
 }
@@ -87,7 +87,7 @@ fn test_two_pair_ranks() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_two_pairs_second_pair_cascade() {
     // both hands have two pairs, with the same highest ranked pair,
     // tie goes to low pair
@@ -103,26 +103,26 @@ fn test_two_pairs_last_card_cascade() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_three_of_a_kind_beats_two_pair() {
     test(&["2S 8H 2H 8D JH", "4S 5H 4C 8S 4H"], &["4S 5H 4C 8S 4H"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_three_of_a_kind_ranks() {
     //both hands have three of a kind, tie goes to highest ranked triplet
     test(&["2S 2H 2C 8D JH", "4S AH AS 8C AD"], &["4S AH AS 8C AD"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_low_three_of_a_kind_beats_high_two_pair() {
     test(&["2H 2D 2C 8H 5H", "AS AC KS KC 6S"], &["2H 2D 2C 8H 5H"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_three_of_a_kind_cascade_ranks() {
     // with multiple decks, two players can have same three of a kind,
     // ties go to highest remaining cards
@@ -130,34 +130,34 @@ fn test_three_of_a_kind_cascade_ranks() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_straight_beats_three_of_a_kind() {
     test(&["4S 5H 4C 8D 4H", "3S 4D 2S 6D 5C"], &["3S 4D 2S 6D 5C"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_aces_can_end_a_straight_high() {
     // aces can end a straight (10 J Q K A)
     test(&["4S 5H 4C 8D 4H", "10D JH QS KD AC"], &["10D JH QS KD AC"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_aces_can_start_a_straight_low() {
     // aces can start a straight (A 2 3 4 5)
     test(&["4S 5H 4C 8D 4H", "4D AH 3S 2D 5C"], &["4D AH 3S 2D 5C"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_no_ace_in_middle_of_straight() {
     // aces cannot be in the middle of a straight (Q K A 2 3)
     test(&["2C 3D 7H 5H 2S", "QS KH AC 2D 3S"], &["2C 3D 7H 5H 2S"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_straight_ranks() {
     // both hands with a straight, tie goes to highest ranked card
     test(&["4S 6C 7S 8D 5H", "5S 7H 8S 9D 6H"], &["5S 7H 8S 9D 6H"])
@@ -171,7 +171,7 @@ fn test_straight_scoring() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_flush_beats_a_straight() {
     test(&["4C 6H 7D 8D 5H", "2S 4S 5S 6S 7S"], &["2S 4S 5S 6S 7S"])
 }
@@ -184,13 +184,13 @@ fn test_flush_cascade() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_full_house_beats_a_flush() {
     test(&["3H 6H 7H 8H 5H", "4S 5C 4C 5D 4H"], &["4S 5C 4C 5D 4H"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_full_house_ranks() {
     // both hands have a full house, tie goes to highest-ranked triplet
     test(&["4H 4S 4D 9S 9D", "5H 5S 5D 8S 8D"], &["5H 5S 5D 8S 8D"])
@@ -204,40 +204,40 @@ fn test_full_house_cascade() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_four_of_a_kind_beats_full_house() {
     test(&["4S 5H 4D 5D 4H", "3S 3H 2S 3D 3C"], &["3S 3H 2S 3D 3C"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_four_of_a_kind_ranks() {
     // both hands have four of a kind, tie goes to high quad
     test(&["2S 2H 2C 8D 2D", "4S 5H 5S 5D 5C"], &["4S 5H 5S 5D 5C"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_four_of_a_kind_cascade() {
     // with multiple decks, both hands with identical four of a kind, tie determined by kicker
     test(&["3S 3H 2S 3D 3C", "3S 3H 4S 3D 3C"], &["3S 3H 4S 3D 3C"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_straight_flush_beats_four_of_a_kind() {
     test(&["4S 5H 5S 5D 5C", "7S 8S 9S 6S 10S"], &["7S 8S 9S 6S 10S"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_aces_can_end_a_straight_flush_high() {
     // aces can end a straight flush (10 J Q K A)
     test(&["KC AH AS AD AC", "10C JC QC KC AC"], &["10C JC QC KC AC"])
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_aces_can_start_a_straight_flush_low() {
     // aces can start a straight flush (A 2 3 4 5)
     test(&["KS AH AS AD AC", "4H AH 3H 2H 5H"], &["4H AH 3H 2H 5H"])
@@ -251,7 +251,7 @@ fn test_no_ace_in_middle_of_straight_flush() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_straight_flush_ranks() {
     // both hands have a straight flush, tie goes to highest-ranked card
     test(&["4H 6H 7H 8H 5H", "5S 7S 8S 9S 6S"], &["5S 7S 8S 9S 6S"])

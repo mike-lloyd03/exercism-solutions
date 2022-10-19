@@ -9,7 +9,8 @@ pub fn winning_hands<'a>(hands: &[&'a str]) -> Vec<&'a str> {
         return hands.to_vec();
     }
 
-    let winning_hands_vec: Vec<&'a str> = Vec::new();
+    let mut winning_hands_vec: Vec<&Hand> = Vec::new();
+
     let mut hands_parsed: Vec<Hand> = hands
         .iter()
         .map(|s| Hand::from_str(s).expect("Failed to parse hand"))
@@ -21,7 +22,36 @@ pub fn winning_hands<'a>(hands: &[&'a str]) -> Vec<&'a str> {
             .unwrap_or(Ordering::Equal)
     });
 
+    let highest_hand = hands_parsed
+        .last()
+        .expect("Parsed hands should have at least one");
+    // println!("highest_hand in {:?} = {:?}", hands, highest_hand.str);
+
+    winning_hands_vec.push(highest_hand);
+
+    for i in 1..hands.len() {
+        if hands_parsed[i].highest_hand() == highest_hand.highest_hand() {
+            winning_hands_vec.push(&hands_parsed[i])
+        }
+    }
+
+    if winning_hands_vec.len() == 1 {
+        return winning_hands_vec.iter().map(|h| h.str).collect();
+    }
+
+    winning_hands_vec.sort_by(|a, b| {
+        a.highest_card()
+            .partial_cmp(&b.highest_card())
+            .unwrap_or(Ordering::Equal)
+    });
+
+    // println!("ordered by highest card {:?}", winning_hands_vec);
+
     winning_hands_vec
+        .iter()
+        .filter(|h| h.highest_card().rank == winning_hands_vec.last().unwrap().highest_card().rank)
+        .map(|h| h.str)
+        .collect()
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, PartialOrd)]
@@ -130,6 +160,7 @@ enum HandRank {
     RoyalFlush,
 }
 
+#[derive(Debug)]
 struct Hand<'a> {
     str: &'a str,
     cards: [Card; 5],
